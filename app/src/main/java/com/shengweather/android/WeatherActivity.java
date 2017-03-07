@@ -26,6 +26,7 @@ import com.shengweather.android.util.HttpUtil;
 import com.shengweather.android.util.Utility;
 
 import java.io.IOException;
+import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -171,8 +172,19 @@ public class WeatherActivity extends AppCompatActivity {
      * 加载必应每日一图
      */
     private void loadBingPic() {
-        String requestBingPic = "http://guolin.tech/api/bing_pic";
-        HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
+        //String requestBingPic = "http://guolin.tech/api/bing_pic";
+        String requestBingPic = "http://www.wanxiusheng.cn/";
+        Random random = new Random();
+        int s = random.nextInt(9)+1;
+        requestBingPic=requestBingPic+s+".jpg";
+        final String finalRequestBingPic = requestBingPic;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.with(WeatherActivity.this).load(finalRequestBingPic).into(bingPicImg);
+            }
+        });
+       /* HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String bingPic = response.body().string();
@@ -191,7 +203,7 @@ public class WeatherActivity extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     /**
