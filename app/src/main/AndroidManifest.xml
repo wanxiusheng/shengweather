@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shengweather.android">
+    <user-permission android:name="android.permission"></user-permission>
 
     <application
         android:name="org.litepal.LitePalApplication"
